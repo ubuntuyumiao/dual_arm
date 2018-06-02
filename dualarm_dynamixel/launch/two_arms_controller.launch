@@ -1,0 +1,33 @@
+<launch>
+<!-- Start tilt joint controller -->
+    <rosparam file="$(find dualarm_dynamixel)/config/tilt.yaml" command="load"/>
+    <node name="controller_spawner" pkg="dynamixel_controllers" type="controller_spawner.py"
+          args="--manager=dxl_manager
+                --port pan_tilt_port
+                joint11_controller                       
+                joint12_controller
+                joint13_controller
+                joint14_controller
+                joint21_controller                       
+                joint22_controller
+                joint23_controller
+                joint24_controller
+                "
+          output="screen"/>
+          
+<!-- Start joints trajectory controller controller -->
+    <rosparam file="$(find dualarm_dynamixel)/config/joints_trajectory_controller.yaml" command="load"/>
+    <node name="controller_spawner_meta_arms" pkg="dynamixel_controllers" type="controller_spawner.py"
+          args="--manager=dxl_manager
+                --type=meta
+                arms_controller
+                joint11_controller
+                joint12_controller
+                joint13_controller
+                joint21_controller
+                joint22_controller
+                joint23_controller
+               "
+          output="screen"/>
+
+</launch>

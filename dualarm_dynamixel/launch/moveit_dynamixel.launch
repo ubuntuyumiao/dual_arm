@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<launch>
+  <include file="$(find dualarm_moveit_config)/launch/demo.launch">
+  </include>
+  <node name="move_the_arm"
+        pkg="dualarm_dynamixel"
+        type="move_group_by_camera.py"
+         output="screen">
+  </node>
+</launch>

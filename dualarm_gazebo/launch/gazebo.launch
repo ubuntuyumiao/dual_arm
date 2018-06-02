@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<launch>
+  <include
+    file="$(find gazebo_ros)/launch/empty_world.launch" />
+
+
+ <param name="robot_description"
+   command="$(find xacro)/xacro.py '$(find dualarm)/urdf/dualarm.xacro'"/>
+
+ <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+     args="-urdf -model dualarm -z 0.0 -param robot_description"/>
+
+  <node
+    name="fake_joint_calibration"
+    pkg="rostopic"
+    type="rostopic"
+    args="pub /calibrated std_msgs/Bool true" />
+
+  <include file="$(find dualarm_gazebo)/launch/position_controller.launch"/>
+  <!-- ros_control robotis manipulator launch file -->
+  <include file="$(find dualarm_moveit_config)/launch/planning_context.launch">
+    <arg name="load_robot_description" value="true"/>
+  </include>
+</launch>

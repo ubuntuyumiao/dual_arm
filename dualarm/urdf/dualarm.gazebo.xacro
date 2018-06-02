@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<robot>
+
+  <!-- World -->
+  <gazebo reference="world">
+  </gazebo>
+
+  <!-- base_link -->
+  <gazebo reference="base_link">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <material>Gazebo/Grey</material>
+  </gazebo>
+
+  <!-- Link11 -->
+  <gazebo reference="Link11">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <material>Gazebo/Grey</material>
+  </gazebo>
+
+  <!-- Link12 -->
+  <gazebo reference="Link12">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <material>Gazebo/Grey</material>
+  </gazebo>
+
+  <!-- Link13 -->
+  <gazebo reference="Link13">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <material>Gazebo/Grey</material>
+  </gazebo>
+
+  <!-- Link14 -->
+  <gazebo reference="Link14">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <material>Gazebo/Grey</material>
+  </gazebo>
+
+  <!-- Link21 -->
+  <gazebo reference="Link21">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <material>Gazebo/Grey</material>
+  </gazebo>
+
+  <!-- Link22 -->
+  <gazebo reference="Link22">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <material>Gazebo/Grey</material>
+  </gazebo>
+
+  <!-- Link23 -->
+  <gazebo reference="Link23">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <material>Gazebo/Grey</material>
+  </gazebo>
+
+  <!-- Link24 -->
+  <gazebo reference="Link24">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <material>Gazebo/Grey</material>
+  </gazebo>
+
+  <!-- ros_control plugin -->
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/dualarm</robotNamespace>
+      <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+    </plugin>
+  </gazebo>
+
+</robot>

@@ -1,0 +1,10 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: dualarm
+    relative_path: urdf/dualarm.xacro
+  SRDF:
+    relative_path: config/dualarm.srdf
+  CONFIG:
+    author_name: liuliming
+    author_email: 15773371539@163.com
+    generated_timestamp: 1527241748

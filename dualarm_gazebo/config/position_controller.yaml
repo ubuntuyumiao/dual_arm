@@ -1,0 +1,38 @@
+dualarm:
+  # Publish all joint states -----------------------------------
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 125
+
+  # Position Controllers ---------------------------------------
+  joint11_position:
+    type: position_controllers/JointPositionController
+    joint: Joint11
+
+  joint12_position:
+    type: position_controllers/JointPositionController
+    joint: Joint12
+
+  joint13_position:
+    type: position_controllers/JointPositionController
+    joint: Joint13
+
+  joint14_position:
+    type: position_controllers/JointPositionController
+    joint: Joint14
+  joint21_position:
+    type: position_controllers/JointPositionController
+    joint: Joint21
+
+  joint22_position:
+    type: position_controllers/JointPositionController
+    joint: Joint22
+
+  joint23_position:
+    type: position_controllers/JointPositionController
+    joint: Joint23
+
+  joint24_position:
+    type: position_controllers/JointPositionController
+    joint: Joint24
+

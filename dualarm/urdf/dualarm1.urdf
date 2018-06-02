@@ -1,0 +1,531 @@
+<?xml version="1.0"?>
+
+<robot name="dualarm" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- some parameters -->
+  <xacro:property name="pi" value="3.141592654" />
+
+  <!-- Import all Gazebo-customization elements, including Gazebo colors -->
+  <xacro:include filename="$(find dualarm)/urdf/dualarm.gazebo.xacro" />
+
+  <!-- Import Rviz colors -->
+  <xacro:include filename="$(find dualarm)/urdf/materials.xacro" />
+
+
+  <!-- World -->
+  <link name="world">
+  </link>
+
+  <!-- World fixed joint-->
+  <joint name="world_fixed" type="fixed">
+    <origin xyz="0 0 1" rpy="0 0 0"/>
+    <parent link="world"/>
+    <child link="base_link"/>
+  </joint>
+
+  <!-- base_link -->
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.0038889 0.029746 -0.075699"
+        rpy="0 0 0" />
+      <mass
+        value="0.18539" />
+      <inertia
+        ixx="0.00049652"
+        ixy="8.6957E-10"
+        ixz="1.7646E-10"
+        iyy="0.00066277"
+        iyz="5.6329E-05"
+        izz="0.0010875" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dualarm/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dualarm/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Link 11 -->
+  <link
+    name="Link11">
+    <inertial>
+      <origin
+        xyz="0.00269072051291801 -0.0191705920935161 -3.4555691641458E-15"
+        rpy="0 0 0" />
+      <mass
+        value="0.0124705129427262" />
+      <inertia
+        ixx="2.48875397091717E-06"
+        ixy="2.91142223468882E-07"
+        ixz="9.46850486132299E-19"
+        iyy="4.55520464990268E-06"
+        iyz="-4.2225915909607E-19"
+        izz="5.90161236148901E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dualarm/meshes/Link11.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.349019607843137 0.349019607843137 0.349019607843137 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dualarm/meshes/Link11.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- joint 11 -->
+  <joint
+    name="Joint11"
+    type="revolute">
+    <origin
+      xyz="-0.0611109668878105 0.0673797743368263 -0.104222956866902"
+      rpy="1.5707963267949 0 3.14159265358979" />
+    <parent
+      link="base_link" />
+    <child
+      link="Link11" />
+    <axis
+      xyz="0 1 0" />
+    <limit velocity="6.2" effort="30" lower="${-pi*5/6}" upper="${pi*5/6}" />
+  </joint>
+
+  <!-- Link 12 -->
+  <link
+    name="Link12">
+    <inertial>
+      <origin
+        xyz="-1.33966370092914E-05 -0.041799996708401 -0.000212935127416096"
+        rpy="0 0 0" />
+      <mass
+        value="0.101748382275423" />
+      <inertia
+        ixx="0.000119751123807824"
+        ixy="1.65075281922008E-11"
+        ixz="-5.15869314501342E-11"
+        iyy="2.04906969155687E-05"
+        iyz="4.31699861791408E-12"
+        izz="0.000111914161769317" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dualarm/meshes/Link12.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dualarm/meshes/Link12.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- joint 12 -->
+  <joint
+    name="Joint12"
+    type="revolute">
+    <origin
+      xyz="0 -0.0335000000000001 0"
+      rpy="1.57079632680011 1.5553643566033 1.57079632680011" />
+    <parent
+      link="Link11" />
+    <child
+      link="Link12" />
+    <axis
+      xyz="0 0 -1" />
+    <limit velocity="6.2" effort="30" lower="${-pi*5/6}" upper="${pi*5/6}" />
+  </joint>
+
+  <!-- Link 13 -->
+  <link
+    name="Link13">
+    <inertial>
+      <origin
+        xyz="0.000886155981850822 0.0529215991217805 0.00121295587029274"
+        rpy="0 0 0" />
+      <mass
+        value="0.0730650616975855" />
+      <inertia
+        ixx="5.46820197704253E-05"
+        ixy="3.76067620593637E-06"
+        ixz="-4.47076677855649E-07"
+        iyy="2.8170531638884E-05"
+        iyz="2.35374784684724E-06"
+        izz="7.07769660754991E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dualarm/meshes/Link13.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.349019607843137 0.349019607843137 0.349019607843137 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dualarm/meshes/Link13.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- joint 13 -->
+  <joint
+    name="Joint13"
+    type="revolute">
+    <origin
+      xyz="0 -0.0836000000000001 0"
+      rpy="3.11512223226386 1.5707963267949 0" />
+    <parent
+      link="Link12" />
+    <child
+      link="Link13" />
+    <axis
+      xyz="1 0 0" />
+    <limit velocity="6.2" effort="30" lower="${-pi*5/6}" upper="${pi*5/6}" />
+  </joint>
+
+  <!-- Link 14 -->
+  <link
+    name="Link14">
+    <inertial>
+      <origin
+        xyz="-0.000250000250822863 -0.00692686689003476 0.0375604021905744"
+        rpy="0 0 0" />
+      <mass
+        value="0.00851487862558135" />
+      <inertia
+        ixx="6.91407797543247E-06"
+        ixy="1.42108319438671E-15"
+        ixz="5.91004977648418E-14"
+        iyy="8.62639140242656E-06"
+        iyz="-2.08331081779171E-06"
+        izz="4.40145500323546E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dualarm/meshes/Link14.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dualarm/meshes/Link14.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- joint 14 -->
+  <joint
+    name="Joint14"
+    type="revolute">
+    <origin
+      xyz="0 0.0718 0.0040000000000001"
+      rpy="-1.52889393527737 0 0" />
+    <parent
+      link="Link13" />
+    <child
+      link="Link14" />
+    <axis
+      xyz="1 0 0" />
+    <limit velocity="6.2" effort="30" lower="${-pi*5/6}" upper="${pi*5/6}" />
+  </joint>
+
+  <!-- Link 21 -->
+  <link
+    name="Link21">
+    <inertial>
+      <origin
+        xyz="0.00269072051291805 -0.0191705920935108 -7.54951656745106E-15"
+        rpy="0 0 0" />
+      <mass
+        value="0.0124705129427262" />
+      <inertia
+        ixx="2.48875397091582E-06"
+        ixy="2.91142223467642E-07"
+        ixz="1.67056073022229E-18"
+        iyy="4.55520464990268E-06"
+        iyz="-9.44560850196753E-19"
+        izz="5.90161236148766E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dualarm/meshes/Link21.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.349019607843137 0.349019607843137 0.349019607843137 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dualarm/meshes/Link21.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- joint 21 -->
+  <joint
+    name="Joint21"
+    type="continuous">
+    <origin
+      xyz="0.068889033112179 0.067379774336837 -0.104222956866902"
+      rpy="1.5707963267949 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="Link21" />
+    <axis
+      xyz="0 1 0" />
+    <limit velocity="6.2" effort="30" lower="${-pi*5/6}" upper="${pi*5/6}" />
+  </joint>
+
+  <!-- Link 22 -->
+  <link
+    name="Link22">
+    <inertial>
+      <origin
+        xyz="-1.33966740793884E-05 -0.0418000030676642 -0.000212935264923039"
+        rpy="0 0 0" />
+      <mass
+        value="0.101748383608822" />
+      <inertia
+        ixx="0.000119751124318042"
+        ixy="2.17066133534819E-11"
+        ixz="-5.16331933778451E-11"
+        iyy="2.04906971613115E-05"
+        iyz="-4.04063963358574E-12"
+        izz="0.000111914162121549" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dualarm/meshes/Link22.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dualarm/meshes/Link22.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- joint 22 -->
+  <joint
+    name="Joint22"
+    type="revolute">
+    <origin
+      xyz="0 -0.0335 0"
+      rpy="0 1.5707963267949 0" />
+    <parent
+      link="Link21" />
+    <child
+      link="Link22" />
+    <axis
+      xyz="0 0 1" />
+    <limit velocity="6.2" effort="30" lower="${-pi*5/6}" upper="${pi*5/6}" />
+  </joint>
+
+  <!-- Link 23 -->
+  <link
+    name="Link23">
+    <inertial>
+      <origin
+        xyz="-0.00514247863685749 0.0529563414926528 -4.00609769487387E-05"
+        rpy="0 0 0" />
+      <mass
+        value="0.0730650631307183" />
+      <inertia
+        ixx="6.17797677710439E-05"
+        ixy="6.96839762428678E-06"
+        ixz="9.23429650582712E-09"
+        iyy="1.98897885502528E-05"
+        iyz="1.26759416180323E-07"
+        izz="5.48778256109819E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dualarm/meshes/Link23.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.349019607843137 0.349019607843137 0.349019607843137 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dualarm/meshes/Link23.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- joint 23 -->
+  <joint
+    name="Joint23"
+    type="revolute">
+    <origin
+      xyz="0 -0.0835999999999917 0"
+      rpy="3.14159265358979 0 0" />
+    <parent
+      link="Link22" />
+    <child
+      link="Link23" />
+    <axis
+      xyz="0 0 -1" />
+    <limit velocity="6.2" effort="30" lower="${-pi*5/6}" upper="${pi*5/6}" />
+  </joint>
+
+  <!-- Link 24 -->
+  <link
+    name="Link24">
+    <inertial>
+      <origin
+        xyz="9.99997491716309E-05 -0.00692686689004521 0.0375604021905747"
+        rpy="0 0 0" />
+      <mass
+        value="0.00851487862558137" />
+      <inertia
+        ixx="6.91407797543257E-06"
+        ixy="1.42107788276752E-15"
+        ixz="5.91004894825182E-14"
+        iyy="8.62639140242661E-06"
+        iyz="-2.08331081779175E-06"
+        izz="4.40145500323549E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dualarm/meshes/Link24.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dualarm/meshes/Link24.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- joint 24 -->
+  <joint
+    name="Joint24"
+    type="revolute">
+    <origin
+      xyz="-0.00400000000000021 0.0718000000000001 0"
+      rpy="1.5707963267949 1.5707963267949 0" />
+    <parent
+      link="Link23" />
+    <child
+      link="Link24" />
+    <axis
+      xyz="1 0 0" />
+    <limit velocity="6.2" effort="30" lower="${-pi*5/6}" upper="${pi*5/6}" />
+  </joint>
+</robot>

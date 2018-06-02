@@ -1,0 +1,9 @@
+<launch> 
+  <node name="goal_manipulator"
+        pkg="moveit_tutorials"
+        type="goal_manipulator_tutorial"
+        respawn="false" output="screen">
+    <rosparam command="load"
+              file="$(find dualarm_moveit_config)/config/kinematics.yaml"/>
+  </node>
+</launch>

@@ -1,0 +1,19 @@
+controller_list:
+  - name: fake_left_arm_controller
+    joints:
+      - Joint11
+      - Joint12
+      - Joint13
+  - name: fake_right_arm_controller
+    joints:
+      - Joint21
+      - Joint22
+      - Joint23
+  - name: fake_arms_controller
+    joints:
+      - Joint11
+      - Joint12
+      - Joint13
+      - Joint21
+      - Joint22
+      - Joint23
